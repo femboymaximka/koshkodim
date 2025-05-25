@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Хвостаті — Зелений Зоопарк</title>
+  <link rel="icon" type="image/png" href="Media/Logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+  <style>
+	#logtext {
+		font: sans-serif;
+		margin-left: left;
+		margin-right: auto;
+	}
+  </style>
+</head>
+<body>
+
+  <div class="header">
+	<img class="piclogo" src="Media/Logo.png" alt="Логотип сайту">
+	<h1 id="logtext">Кошкодім</h1>
+    <button class="menu-button"><i class="fas fa-bars"></i> Меню</button>
+    <div class="dropdown">
+      <a href="#"><i class="fas fa-home"></i> Головна</a>
+      <a href="#breeds"><i class="fas fa-cat"></i> Породи</a>
+      <a href="#"><i class="fas fa-stethoscope"></i> Ветклініка</a>
+      <a href="#contact"><i class="fas fa-envelope"></i> Контакти</a>
+      <a href="#"><i class="fas fa-star"></i> Відгуки</a>
+    </div>
+  </div>
+
+  <div class="breed-section">
+    <h2>Пошук породи</h2>
+    <input type="text" id="searchInput" placeholder="Введіть назву породи...">
+  </div>
+
+  <div class="breed-section" id="breeds">
+    <h2>Породи котів</h2>
+
+    <div class="breed">
+      <img src="Media/57.png" alt="Мейн-кун">
+      <div class="breed-description">
+        <h3>Мейн-кун</h3>
+        <p>Одна з найбільших порід домашніх котів, з густою шерстю та доброзичливим характером.</p>
+      </div>
+    </div>
+
+    <div class="breed">
+      <img src="Media/siamskaya-1024x819-min.jpg" alt="Сіамська кішка">
+      <div class="breed-description">
+        <h3>Сіамська кішка</h3>
+        <p>Елегантна, товариська, з характерним забарвленням і блакитними очима.</p>
+      </div>
+    </div>
+
+    <div class="breed">
+      <img src="Media/80edba1-kit-1.jpg" alt="Сфінкс">
+      <div class="breed-description">
+        <h3>Сфінкс</h3>
+        <p>Безшерста порода з м’якою шкірою, відома ласкавістю та активністю.</p>
+      </div>
+    </div>
+
+    <div class="breed">
+      <img src="Media/Ukrainian_Levkoy_cat.jpg" alt="Український левкой">
+      <div class="breed-description">
+        <h3>Український левкой</h3>
+        <p>Порода без шерсті з загнутими вухами, створена в Україні.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="breed-section" id="contact">
+    <h2>Зв'яжіться з нами</h2>
+    <form id="contactForm">
+      <label>Ім’я:
+        <input type="text" name="name" required>
+      </label>
+      <label>Email:
+        <input type="email" name="email" required>
+      </label>
+      <label>Повідомлення:
+        <textarea name="message" required rows="4"></textarea>
+      </label>
+      <button type="submit">Надіслати</button>
+      <p id="formResponse" style="color: green;"></p>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Кошкодім — Зелений Зоопарк. Усі права захищено.</p>
+  </footer>
+
+  <script>
+    // Пошук
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+      let filter = this.value.toLowerCase();
+      document.querySelectorAll(".breed").forEach(breed => {
+        let text = breed.innerText.toLowerCase();
+        breed.style.display = text.includes(filter) ? "flex" : "none";
+      });
+    });
+
+    // Форма
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("formResponse").textContent = "Дякуємо за звернення!";
+      this.reset();
+    });
+
+    // Меню
+    document.querySelector(".menu-button").addEventListener("click", function () {
+      let dropdown = document.querySelector(".dropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    // Закриття меню
+    document.addEventListener("click", function(event) {
+      const menu = document.querySelector(".menu-button");
+      const dropdown = document.querySelector(".dropdown");
+      if (!menu.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
